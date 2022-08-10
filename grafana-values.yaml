@@ -1,0 +1,14 @@
+ingress:
+  enabled: true
+  hosts: 
+    - grafana.k3s.local
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server
+
+dashboards: {}
