@@ -9,9 +9,19 @@ helm upgrade -if prometheus-values.yaml prometheus prometheus-community/promethe
 helm upgrade -i prometheus-blackbox-exporter prometheus-community/prometheus-blackbox-exporter -n unitest
 ```
 
+## Add secret with Grafana password
+```shell
+kubectl apply -f grafana-admin-secret.yaml -n unitest
+```
+
 ## Install Grafana
 ```shell
 helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 helm upgrade -if grafana-values.yaml grafana grafana/grafana -n unitest
+```
+
+## Add configmap with Grafana dashboard
+```shell
+kubectl apply -f blackbox-exporter-cm.yaml -n unitest
 ```
