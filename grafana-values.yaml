@@ -3,6 +3,11 @@ ingress:
   hosts: 
     - grafana.k3s.local
 
+admin:
+  existingSecret: "grafana-admin"
+  userKey: admin-user
+  passwordKey: admin-password
+
 datasources:
   datasources.yaml:
     apiVersion: 1
@@ -10,5 +15,10 @@ datasources:
     - name: Prometheus
       type: prometheus
       url: http://prometheus-server
+      isDefault: true
 
-dashboards: {}
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    labelValue: "true"
